@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="area_dropdown">
+        <item>Bay Area</item>
+        <item>Los Angeles Area</item>
+        <item>New York Area</item>
+        <item>Texas Area</item>
+        <item>Seattle Area</item>
+    </string-array>
+</resources>

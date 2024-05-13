@@ -1,0 +1,51 @@
+CREATE TABLE IF NOT EXISTS users (
+    user_id SERIAL PRIMARY KEY,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    uuid VARCHAR(100) NOT NULL,
+    uuid_hash VARCHAR(100) NOT NULL,
+    role_name VARCHAR(100) NOT NULL,
+);
+
+CREATE TABLE IF NOT EXISTS broadcast_messages (
+    message_id SERIAL PRIMARY KEY,
+    title VARCHAR(100) NOT NULL,
+    message VARCHAR(100) NOT NULL,
+    timestamp TIMESTAMP NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS location_history (
+    location_id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
+    latitude FLOAT NOT NULL,
+    longitude FLOAT NOT NULL,
+    reverse_geo_code_address VARCHAR(100),
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+CREATE TABLE IF NOT EXISTS vaccination_history (
+    vaccination_id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
+    vaccination_date DATE,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+CREATE TABLE IF NOT EXISTS infection_history (
+    history_id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
+    infected BOOLEAN NOT NULL,
+    symptoms VARCHAR(100),
+    timestamp TIMESTAMP NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
+
+CREATE TABLE IF NOT EXISTS sku_demand_survey (
+    demand_id SERIAL PRIMARY KEY,
+    survey_id INT NOT NULL,
+    user_id INT NOT NULL,
+    city VARCHAR(100) NOT NULL,
+    ranking INT,
+    quantity INT,
+    FOREIGN KEY (user_id) REFERENCES users(user_id)
+);
